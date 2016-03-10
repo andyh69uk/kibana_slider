@@ -13,6 +13,7 @@ define(function (require) {
         filterType: 'range',
         selectedField: null,
         title: "",
+        icon: "",
         slider: {
           min: 50,
           max: 200,
@@ -80,6 +81,9 @@ define(function (require) {
     });
     $scope.$watch('vis.params.title', function (title) {
       $scope.config.title = title;
+    });
+    $scope.$watch('vis.params.icon', function (icon) {
+      $scope.config.icon = icon;
     });
 
     $scope.getIndexedNumberFields = function() {

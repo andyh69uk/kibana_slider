@@ -1,5 +1,5 @@
 <div ng-controller="KbnSliderVisController" class="slider-vis">
-    <h3 ng-show="config.title">{{config.title}}</h3>
+    <h3 ng-show="config.title"><i ng-show="config.icon" class="fa fa-fw {{config.icon}}" aria-hidden="true"></i> {{config.title}}</h3>
     <rzslider rz-slider-model="config.slider.min"
               rz-slider-high="config.slider.max"
               rz-slider-options="config.slider.options"
