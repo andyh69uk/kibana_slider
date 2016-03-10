@@ -14,7 +14,13 @@ define(function (require) {
       max: 200,
       options: {
         floor: 0,
-        ceil: 450
+        ceil: 450,
+        onEnd: function(sliderId, modelValue, highValue) {
+          if($scope.selectedField) {
+            $scope.filter({gte:modelValue, lte:highValue});
+          }
+        }
+
       }
     };
 
