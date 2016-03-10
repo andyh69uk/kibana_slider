@@ -5,37 +5,37 @@ define(function (require) {
     var buildRangeFilter = require('ui/filter_manager/lib/range');
 
     $scope.type = 'range';
-    $scope.oldField = null;
+    $scope.selectedField = 'price';
+    $scope.oldValue = null;
 
-    $scope.filter = function(field) {
-      var oldFilter = $scope.findFilter($scope.oldField);
+    $scope.filter = function(value) {
+      var oldFilter = $scope.findFilter($scope.oldValue);
       if(oldFilter == null) {
-        var rangeFilter = buildRangeFilter({name: field.id}, {
-          gte : field.value
-        }, $scope.vis.indexPattern);
-
+        var rangeFilter = buildRangeFilter({name: $scope.selectedField},
+                                            value,
+                                            $scope.vis.indexPattern);
         queryFilter.addFilters(rangeFilter);
       }
       else {
         $scope.editingFilter = {
           source: oldFilter, // old
-          type: 'range',
+          type: $scope.type,
           model: oldFilter, // new
           alias: oldFilter.meta.alias
         };
         $scope.editingFilter.model.range.price.gte = $scope.editingFilter.model.range.price.gte + 1;
         queryFilter.updateFilter($scope.editingFilter);
       }
-      $scope.oldField = field;
+      $scope.oldValue = value;
     };
 
-    $scope.findFilter = function(oldField) {
+    $scope.findFilter = function(oldValue) {
       var foundFilter = null;
 
-      if(oldField != null) {
-        var oldFilter = buildRangeFilter({name: oldField.id}, {
-          gte: oldField.value
-        }, $scope.vis.indexPattern);
+      if(oldValue != null) {
+        var oldFilter = buildRangeFilter({name: $scope.selectedField},
+                                          oldValue,
+                                          $scope.vis.indexPattern);
 
         var filters = queryFilter.getFilters();
         for (var i = 0; i < filters.length; i++) {
