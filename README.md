@@ -5,6 +5,8 @@ Splider Plugin Widget for Kibana.
 # Install
 
 ```bash
+cd ./kibana-slider-plugin
+bower install
 cp -R ./kibana-slider-plugin ./kibana/src/plugins/
 ```
 
