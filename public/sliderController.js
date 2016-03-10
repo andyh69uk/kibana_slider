@@ -9,30 +9,32 @@ define(function (require) {
     $rootScope.plugin = {
       sliderPlugin: {}
     };
-    $scope.slider = {
-      min: 50,
-      max: 200,
-      options: {
-        floor: 0,
-        ceil: 450,
-        onEnd: function(sliderId, modelValue, highValue) {
-          if($scope.selectedField) {
-            $scope.filter({gte:modelValue, lte:highValue});
+    $scope.config = {
+        filterType: 'range',
+        selectedField: null,
+        title: "",
+        slider: {
+          min: 50,
+          max: 200,
+          options: {
+            floor: 0,
+            ceil: 450,
+            step: 1,
+            onEnd: function(sliderId, modelValue, highValue) {
+              if($scope.config.selectedField) {
+                $scope.filter({gte:modelValue, lte:highValue});
+              }
+            }
           }
         }
-
-      }
     };
 
-    $scope.filterType = 'range';
-    $scope.selectedField = null;
-    $scope.title = "";
     $scope.oldValue = null;
 
     $scope.filter = function(value) {
       var oldFilter = $scope.findFilter($scope.oldValue);
       if(oldFilter == null) {
-        var rangeFilter = buildRangeFilter({name: $scope.selectedField},
+        var rangeFilter = buildRangeFilter({name: $scope.config.selectedField},
                                             value,
                                             $scope.vis.indexPattern);
         queryFilter.addFilters(rangeFilter);
@@ -40,12 +42,12 @@ define(function (require) {
       else {
         $scope.editingFilter = {
           source: oldFilter, // old
-          type: $scope.filterType,
+          type: $scope.config.filterType,
           model: angular.copy(oldFilter), // new
           alias: oldFilter.meta.alias
         };
-        $scope.editingFilter.model.range.price.gte = $scope.slider.min;
-        $scope.editingFilter.model.range.price.lte = $scope.slider.max;
+        $scope.editingFilter.model.range.price.gte = $scope.config.slider.min;
+        $scope.editingFilter.model.range.price.lte = $scope.config.slider.max;
         queryFilter.updateFilter($scope.editingFilter);
       }
       $scope.oldValue = value;
@@ -55,13 +57,13 @@ define(function (require) {
       var foundFilter = null;
 
       if(oldValue != null) {
-        var oldFilter = buildRangeFilter({name: $scope.selectedField},
+        var oldFilter = buildRangeFilter({name: $scope.config.selectedField},
                                           oldValue,
                                           $scope.vis.indexPattern);
 
         var filters = queryFilter.getFilters();
         for (var i = 0; i < filters.length; i++) {
-          if (_.isEqual(filters[i][$scope.filterType], oldFilter[$scope.filterType])) {
+          if (_.isEqual(filters[i][$scope.config.filterType], oldFilter[$scope.config.filterType])) {
             foundFilter = filters[i];
             break;
           }
@@ -73,11 +75,11 @@ define(function (require) {
 
     $scope.$watch('vis.params.field', function (field) {
       if(field) {
-        $scope.selectedField = field.name;
+        $scope.config.selectedField = field.name;
       }
     });
     $scope.$watch('vis.params.title', function (title) {
-      $scope.title = title;
+      $scope.config.title = title;
     });
 
     $scope.getIndexedNumberFields = function() {

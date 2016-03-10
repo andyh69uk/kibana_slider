@@ -1,7 +1,7 @@
 <div ng-controller="KbnSliderVisController" class="slider-vis">
-    <h3 ng-show="title">{{title}}</h3>
-    <rzslider rz-slider-model="slider.min"
-              rz-slider-high="slider.max"
-              rz-slider-options="slider.options"
-              ng-disabled="!selectedField"></rzslider>
+    <h3 ng-show="config.title">{{config.title}}</h3>
+    <rzslider rz-slider-model="config.slider.min"
+              rz-slider-high="config.slider.max"
+              rz-slider-options="config.slider.options"
+              ng-disabled="!config.selectedField"></rzslider>
 </div>
