@@ -20,6 +20,7 @@ define(function (require) {
 
     $scope.filterType = 'range';
     $scope.selectedField = null;
+    $scope.title = "";
     $scope.oldValue = null;
 
     $scope.filter = function(value) {
@@ -68,6 +69,9 @@ define(function (require) {
       if(field) {
         $scope.selectedField = field.name;
       }
+    });
+    $scope.$watch('vis.params.title', function (title) {
+      $scope.title = title;
     });
 
     $scope.getIndexedNumberFields = function() {
