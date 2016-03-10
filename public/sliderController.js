@@ -1,13 +1,16 @@
 define(function (require) {
-  var IndexedArray = require('ui/IndexedArray');
-
   var module = require('ui/modules').get('kibana/kibana-slider-plugin', ['kibana']);
   module.controller('KbnSliderVisController', function ($scope, $rootScope, Private, $filter) {
     var queryFilter = Private(require('ui/filter_bar/query_filter'));
     var buildRangeFilter = require('ui/filter_manager/lib/range');
+    var IndexedArray = require('ui/IndexedArray');
 
-    $scope.type = 'range';
-    $scope.selectedField = 'price';
+    $rootScope.plugin = {
+      sliderPlugin: {}
+    };
+
+    $scope.filterType = 'range';
+    $scope.selectedField = null;
     $scope.oldValue = null;
 
     $scope.filter = function(value) {
@@ -21,7 +24,7 @@ define(function (require) {
       else {
         $scope.editingFilter = {
           source: oldFilter, // old
-          type: $scope.type,
+          type: $scope.filterType,
           model: oldFilter, // new
           alias: oldFilter.meta.alias
         };
@@ -41,7 +44,7 @@ define(function (require) {
 
         var filters = queryFilter.getFilters();
         for (var i = 0; i < filters.length; i++) {
-          if (_.isEqual(filters[i][$scope.type], oldFilter[$scope.type])) {
+          if (_.isEqual(filters[i][$scope.filterType], oldFilter[$scope.filterType])) {
             foundFilter = filters[i];
             break;
           }
@@ -50,6 +53,12 @@ define(function (require) {
 
       return foundFilter;
     };
+
+    $scope.$watch('vis.params.field', function (field) {
+      if(field) {
+        $scope.selectedField = field.name;
+      }
+    });
 
     $scope.getIndexedNumberFields = function() {
       var fields = $scope.vis.indexPattern.fields.raw;
@@ -67,6 +76,6 @@ define(function (require) {
       });
     };
 
-    $rootScope.indexedFields = $scope.getIndexedNumberFields();
+    $rootScope.plugin.sliderPlugin.indexedFields = $scope.getIndexedNumberFields();
   });
 });

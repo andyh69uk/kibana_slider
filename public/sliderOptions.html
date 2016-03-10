@@ -6,10 +6,9 @@
             name="field"
             required
             ng-model="vis.params.field"
-            ng-show="$root.indexedFields.length"
-            auto-select-if-only-one="$root.indexedFields"
-            ng-options="field as field.displayName group by field.type for field in $root.indexedFields"
-            >
+            ng-show="$root.plugin.sliderPlugin.indexedFields.length"
+            auto-select-if-only-one="$root.plugin.sliderPlugin.indexedFields"
+            ng-options="field as field.displayName group by field.type for field in $root.plugin.sliderPlugin.indexedFields">
     </select>
   </div>
 </div>
