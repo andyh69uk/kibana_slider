@@ -9,13 +9,13 @@ define(function (require) {
     return new TemplateVisType({
       name: 'slider',
       title: 'Slider Widget',
-      icon: 'fa-area-chart',
+      icon: 'fa-sliders',
       description: 'Useful for filtering with sliders in dashboards.',
       template: require('plugins/kibana-slider-plugin/slider.html'),
       params: {
         editor: require('plugins/kibana-slider-plugin/sliderOptions.html')
       },
-      requiresSearch: false
+      requiresSearch: true
     });
   }
 
