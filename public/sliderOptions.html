@@ -1,6 +1,15 @@
-<div class="slider-vis-options form-group">
-  <div>
-    <label>REMOVE THIS</label>
+<div class="slider-vis-options">
+  <div class="form-group">
+    <label for="field">Field</label>
+    <select
+            class="form-control"
+            name="field"
+            required
+            ng-model="vis.params.field"
+            ng-show="$root.indexedFields.length"
+            auto-select-if-only-one="$root.indexedFields"
+            ng-options="field as field.displayName group by field.type for field in $root.indexedFields"
+            >
+    </select>
   </div>
-  <textarea ng-model="vis.params.html" class="form-control" rows="20"></textarea>
 </div>
