@@ -1,12 +1,21 @@
 define(function (require) {
-  var module = require('ui/modules').get('kibana/kibana-slider-plugin', ['kibana']);
+  var module = require('ui/modules').get('kibana/kibana-slider-plugin', ['kibana', 'rzModule']);
   module.controller('KbnSliderVisController', function ($scope, $rootScope, Private, $filter) {
     var queryFilter = Private(require('ui/filter_bar/query_filter'));
     var buildRangeFilter = require('ui/filter_manager/lib/range');
     var IndexedArray = require('ui/IndexedArray');
+    var angular = require('angular');
 
     $rootScope.plugin = {
       sliderPlugin: {}
+    };
+    $scope.slider = {
+      min: 50,
+      max: 200,
+      options: {
+        floor: 0,
+        ceil: 450
+      }
     };
 
     $scope.filterType = 'range';
@@ -25,10 +34,11 @@ define(function (require) {
         $scope.editingFilter = {
           source: oldFilter, // old
           type: $scope.filterType,
-          model: oldFilter, // new
+          model: angular.copy(oldFilter), // new
           alias: oldFilter.meta.alias
         };
-        $scope.editingFilter.model.range.price.gte = $scope.editingFilter.model.range.price.gte + 1;
+        $scope.editingFilter.model.range.price.gte = $scope.slider.min;
+        $scope.editingFilter.model.range.price.lte = $scope.slider.max;
         queryFilter.updateFilter($scope.editingFilter);
       }
       $scope.oldValue = value;

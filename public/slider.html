@@ -1,3 +1,8 @@
 <div ng-controller="KbnSliderVisController" class="slider-vis">
-    <button class="btn btn-default" type="submit" ng-click="filter({gte:200})">Filter Price 200</button>
+    <button class="btn btn-default" type="submit" ng-click="filter({gte:slider.min, lte:slider.max})">Filter Price 200</button>
+    <div>
+        <rzslider rz-slider-model="slider.min"
+                  rz-slider-high="slider.max"
+                  rz-slider-options="slider.options"></rzslider>
+    </div>
 </div>
