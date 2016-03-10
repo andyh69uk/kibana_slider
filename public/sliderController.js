@@ -4,22 +4,19 @@ define(function (require) {
     var queryFilter = Private(require('ui/filter_bar/query_filter'));
     var buildRangeFilter = require('ui/filter_manager/lib/range');
 
-    $scope.rangeFilter = null;
-    $scope.price = 200;
-
     $scope.filter = function(field) {
       if($scope.rangeFilter == null) {
-        $scope.rangeFilter = buildRangeFilter({name: 'price'}, {
-          gte : $scope.price
+        $scope.rangeFilter = buildRangeFilter({name: field.id}, {
+          gte : field.value
         }, $scope.vis.indexPattern);
 
-        queryFilter.addFilters([$scope.rangeFilter]);
+        queryFilter.addFilters($scope.rangeFilter);
       }
       else {
         $scope.editingFilter = {
-          source: $scope.rangeFilter,
+          source: $scope.rangeFilter, // old
           type: 'range',
-          model: {range: $scope.rangeFilter.range},
+          model: $scope.rangeFilter, // new
           alias: $scope.rangeFilter.meta.alias
         };
         $scope.editingFilter.model.range.price.gte = $scope.editingFilter.model.range.price.gte + 1;
