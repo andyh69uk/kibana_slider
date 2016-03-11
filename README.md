@@ -1,5 +1,5 @@
 # Kibana Slider Plugin Widget
-Splider Plugin Widget for Kibana. 
+Slider Plugin Widget for Kibana. 
 
 
 # Install
