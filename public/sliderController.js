@@ -79,6 +79,18 @@ define(function (require) {
         $scope.config.selectedField = field.name;
       }
     });
+    $scope.$watch('vis.params.minValue', function (minValue) {
+      if(minValue) {
+        $scope.config.slider.options.floor = minValue;
+        $scope.config.slider.min = minValue;
+      }
+    });
+    $scope.$watch('vis.params.maxValue', function (maxValue) {
+      if(maxValue) {
+        $scope.config.slider.options.ceil = maxValue;
+        $scope.config.slider.max = maxValue;
+      }
+    });
     $scope.$watch('vis.params.title', function (title) {
       $scope.config.title = title;
     });
