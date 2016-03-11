@@ -47,8 +47,8 @@ define(function (require) {
           model: angular.copy(oldFilter), // new
           alias: oldFilter.meta.alias
         };
-        $scope.editingFilter.model.range.price.gte = $scope.config.slider.min;
-        $scope.editingFilter.model.range.price.lte = $scope.config.slider.max;
+        $scope.editingFilter.model.range[$scope.config.selectedField].gte = $scope.config.slider.min;
+        $scope.editingFilter.model.range[$scope.config.selectedField].lte = $scope.config.slider.max;
         queryFilter.updateFilter($scope.editingFilter);
       }
       $scope.oldValue = value;
