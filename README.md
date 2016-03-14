@@ -14,5 +14,5 @@ cp -R ./kibana-slider-plugin ./kibana/src/plugins/
 Plugins are officialy not supported, because of fast code changes even in minor Versions.
 
 The plugin is 100% compatible with following Versions (other not tested yet):
-* kibana (=4.4.1)
+* kibana (=4.4.x)
 

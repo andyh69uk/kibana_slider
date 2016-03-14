@@ -91,6 +91,11 @@ define(function (require) {
         $scope.config.slider.max = maxValue;
       }
     });
+    $scope.$watch('vis.params.step', function (step) {
+      if(step) {
+        $scope.config.slider.options.step = step;
+      }
+    });
     $scope.$watch('vis.params.title', function (title) {
       $scope.config.title = title;
     });
