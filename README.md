@@ -1,6 +1,9 @@
 # Kibana Slider Plugin Widget
 Slider Plugin Widget for Kibana. 
 
+![preview-create](/resources/preview-create.png)
+
+![preview-edit](/resources/preview-edit.png)
 
 # Install
 
