@@ -8,6 +8,7 @@ Slider Plugin Widget for Kibana.
 # Install
 
 ```bash
+git clone https://github.com/raystorm-place/kibana-slider-plugin.git
 cd ./kibana-slider-plugin
 bower install
 cp -R ./kibana-slider-plugin ./kibana/src/plugins/
