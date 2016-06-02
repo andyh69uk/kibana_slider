@@ -8,10 +8,7 @@ Slider Plugin Widget for Kibana.
 # Install
 
 ```bash
-git clone https://github.com/raystorm-place/kibana-slider-plugin.git
-cd ./kibana-slider-plugin
-bower install
-cp -R ./kibana-slider-plugin ./kibana/src/plugins/
+bin/kibana plugin -i kibana-html-plugin -u https://github.com/raystorm-place/kibana-slider-plugin/releases/download/v0.0.2/kibana-slider-plugin-v0.0.2.tar.gz
 ```
 
 # Compatibility

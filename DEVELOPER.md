@@ -1,11 +1,20 @@
 # Dev
-Clear plugin cache, redeploy and restart
+Install dependencies, clear plugin cache, redeploy and restart
 
 ```bash
+cd ~/tmp/kibana-slider-plugin
+bower install
+
 cd kibana
 rm -rf ./optimize/*
 cp -R ~/tmp/kibana-slider-plugin ./src/plugins/
 bin/kibana
+```
+
+# Release
+
+```bash
+tar -czf kibana-slider-plugin-v0.0.x.tar.gz --exclude .git --exclude .idea --exclude *.iml --exclude src  --exclude demo kibana-slider-plugin
 ```
 
 ## Debug scope
