@@ -1,4 +1,4 @@
-<div class="slider-vis-options">
+<div class="slider-vis-options" ng-init="$parent.sidebar.section='options'">
     <div class="form-group">
         <label for="field">Field</label>
         <select
@@ -33,7 +33,7 @@
     </table>
     <div class="form-group">
         <label for="step">Step</label>
-        <input type="number" step="any" name="step" class="form-control" ng-model="vis.params.step">
+        <input type="number" min="0" step="any" name="step" class="form-control" ng-model="vis.params.step">
     </div>
     <div class="form-group">
         <label for="title">Title</label>
