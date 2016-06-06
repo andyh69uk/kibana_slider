@@ -17,7 +17,7 @@ define(function (require) {
       params: {
         editor: require('plugins/kibana-slider-plugin/sliderOptions.html')
       },
-      requiresSearch: false
+      requiresSearch: true
     });
   }
 
