@@ -21,6 +21,7 @@ define(function (require) {
             floor: 0,
             ceil: 450,
             step: 1,
+            precision: 2,
             onEnd: function(sliderId, modelValue, highValue) {
               if($scope.config.selectedField) {
                 $scope.filter({gte:modelValue, lte:highValue});
