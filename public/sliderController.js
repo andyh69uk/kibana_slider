@@ -3,7 +3,7 @@ define(function (require) {
   module.controller('KbnSliderVisController', function ($scope, $rootScope, Private, $filter) {
     var queryFilter = Private(require('ui/filter_bar/query_filter'));
     var buildRangeFilter = require('ui/filter_manager/lib/range');
-    var IndexedArray = require('ui/IndexedArray');
+    var IndexedArray = require('ui/indexed_array/indexed_array');
     var angular = require('angular');
 
     $rootScope.plugin = {
@@ -107,10 +107,10 @@ define(function (require) {
     $scope.getIndexedNumberFields = function() {
       var fields = $scope.vis.indexPattern.fields.raw;
       var fieldTypes = ["number"];
+      console.log(fields[0]);
 
       if (fieldTypes) {
         fields = $filter('fieldType')(fields, fieldTypes);
-        fields = $filter('filter')(fields, { bucketable: true });
         fields = $filter('orderBy')(fields, ['type', 'name']);
       }
 

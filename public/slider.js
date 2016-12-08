@@ -6,7 +6,7 @@ define(function (require) {
   require('ui/registry/vis_types').register(SliderVisProvider);
 
   function SliderVisProvider(Private) {
-    var TemplateVisType = Private(require('ui/template_vis_type/TemplateVisType'));
+    var TemplateVisType = Private(require('ui/template_vis_type/template_vis_type'));
 
     return new TemplateVisType({
       name: 'slider',
@@ -17,7 +17,7 @@ define(function (require) {
       params: {
         editor: require('plugins/kibana-slider-plugin/sliderOptions.html')
       },
-      requiresSearch: true
+      requiresSearch: false
     });
   }
 
