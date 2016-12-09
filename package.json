@@ -1,10 +1,10 @@
 {
   "name": "kibana-slider-plugin",
-  "version": "5.0.2",
+  "version": "5.1.1",
   "description": "An awesome Kibana plugin",
   "main": "index.js",
   "kibana": {
-    "version": "5.0.2"
+    "version": "5.1.1"
   },
   "scripts": {
     "lint": "eslint",
@@ -14,9 +14,14 @@
     "build": "plugin-helpers build",
     "postinstall": "plugin-helpers postinstall"
   },
+  "dependencies": {
+    "angularjs-slider": "2.10.x"
+  },
+
+
   "devDependencies": {
     "@elastic/eslint-config-kibana": "0.0.2",
-    "@elastic/plugin-helpers": "5.0.1",
+    "@elastic/plugin-helpers": "5.0.1-patch2",
     "babel-eslint": "4.1.8",
     "chai": "^3.5.0",
     "eslint": "1.10.3",
